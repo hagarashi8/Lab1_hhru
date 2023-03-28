@@ -7,7 +7,7 @@ from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.core.utils import ChromeType, log
+from webdriver_manager.core.utils import ChromeType
 import pandas as pd
 
 def log_decorator(msg:str = "Doing stuff"):
