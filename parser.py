@@ -1,5 +1,6 @@
 import time
 from typing import List
+from styleframe import StyleFrame
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromiumService
 from selenium.webdriver.chrome.webdriver import WebDriver
@@ -36,6 +37,9 @@ def get_job_list(driver:WebDriver) -> List[WebElement]:
 def df_and_save(jobs: List[WebElement], filename:str)-> None:
     dataframed = [{"Name": job.find_element(By.CLASS_NAME, "serp-item__title").text, "Company": job.find_element(By.CLASS_NAME, "bloko-text").text} for job in jobs]
     df = pd.DataFrame.from_records(dataframed)
-    df.to_excel(filename)
+    sf = StyleFrame(df)
+    writer = StyleFrame.ExcelWriter(filename)
+    sf.to_excel(excel_writer=writer, sheet_name="Jobs", best_fit=("Name", "Company"))
+    writer.close()
 
 
